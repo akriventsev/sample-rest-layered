@@ -1,0 +1,95 @@
+run:
+  tests: true
+  timeout: 15m
+
+output:
+  sort-results: true
+
+  # colored-line-number|line-number|json|tab|checkstyle|code-climate|junit-xml|github-actions
+  # default is "colored-line-number"
+  format: colored-line-number
+
+issues:
+  max-issues-per-linter: 0
+  max-same-issues: 0
+  # exclude-use-default: false
+  fix: true
+
+linters:
+  # disable-all: true
+  # enable:
+  #   - gosec
+  #   - gofmt
+  enable-all: true
+  disable:
+    - varnamelen
+    - tagliatelle
+    - wrapcheck
+    - errchkjson
+    - exhaustivestruct
+    - exhaustruct
+    - exhaustive
+    - gofumpt
+    - gci
+    - nakedret
+    - gochecknoglobals
+    - gochecknoinits
+    - funlen
+    - gomnd
+    - errorlint
+    - goerr113
+    - ifshort
+    - misspell
+    - structcheck
+    - deadcode
+    - golint
+    - interfacer
+    - maligned
+    - nosnakecase
+    - scopelint
+    - varcheck
+    - ifshort
+    - depguard
+
+linters-settings:
+  gosimple:
+    go: "1.21"
+
+  staticcheck:
+    go: "1.21"
+
+  stylecheck:
+    go: "1.21"
+
+  cyclop:
+    max-complexity: 13
+
+  tagliatelle:
+    case:
+      use-field-name: true
+      rules:
+        # support string case: `camel`, `pascal`, `kebab`, `snake`, `goCamel`, `goPascal`, `goKebab`, `goSnake`, `upper`, `lower`
+        json: snake
+        yaml: snake
+        xml: camel
+        bson: snake
+        avro: snake
+
+  errcheck:
+    exclude-functions:
+      - (*os.File).WriteString
+
+  funlen:
+    lines: 70
+    statements: 40
+
+  ireturn:
+    allow:
+      - anon
+      - error
+      - empty
+      - stdlib
+    reject: []
+
+  lll:
+    line-length: 150
